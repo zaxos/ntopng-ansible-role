@@ -1,0 +1,23 @@
+---
+# defaults file for ntopng-ansible-role
+
+ntopng_packages_EL:
+ - {package: "pfring"}
+ - {package: "n2disk"}
+ - {package: "nprobe"}
+ - {package: "ntopng"}
+ - {package: "ntopng-data"}
+ - {package: "cento"}
+
+ntopng_http_port: 3000
+ntopng_nprobe_flow_collector_port: 2055
+ntopng_use_default_nic_as_monitor_interface: True
+
+ntopng_runas_daemon: True
+ntopng_dns_mode: 1
+ntopng_data_dir: /var/tmp/ntopng
+ntopng_pid_path: /var/run/ntopng.pid
+ntopng_disable_autologout: False
+ntopng_community_edition: True
+
+ntopng_nprobe_tcp_port: 5556

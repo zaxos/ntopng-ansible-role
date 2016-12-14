@@ -1,0 +1,18 @@
+---
+# handlers file for ntopng-ansible-role
+
+- name: restart and enable ntopng service
+  service: name=ntopng
+           state=restarted
+           enabled=yes
+
+- name: restart and enable nprobe service
+  service: name=nprobe
+           state=restarted
+           enabled=yes
+
+- name: restart and enable redis service
+  service: name=redis
+           state=restarted
+           enabled=yes
+

@@ -1,0 +1,91 @@
+---
+# tasks file for ntopng-ansible-role
+
+- name: Add ntop stable repo
+  yum_repository:
+    name: ntop
+    file: ntop
+    description: ntop Stable Repository
+    baseurl: http://packages.ntop.org/centos-stable/$releasever/$basearch/
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: http://packages.ntop.org/centos-stable/RPM-GPG-KEY-deri
+    state: present
+
+- name: Add ntop-noarch stable repo
+  yum_repository:
+    name: ntop-noarch
+    file: ntop-noarch
+    description: ntop-noarch Stable Repository
+    baseurl: http://packages.ntop.org/centos-stable/$releasever/noarch/
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: http://packages.ntop.org/centos-stable/RPM-GPG-KEY-deri
+    state: present
+
+- name: Install ntopng packages
+  yum: name={{ item.package }} state=present
+  with_items: "{{ ntopng_packages_EL }}"
+  register: ntopng_packages_installed
+
+- name: Start and enable redis service
+  service: >
+    name=redis
+    state=started
+    enabled=yes
+
+- name: Create /etc/ntopng directory
+  file: >
+    path=/etc/ntopng
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
+- name: Create /etc/nprobe directory
+  file: >
+    path=/etc/nprobe
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
+- name: Configure NIC (gro off gso off tso off)
+  command: ethtool -K {{ ansible_default_ipv4.interface }} gro off gso off tso off
+  when: ntopng_use_default_nic_as_monitor_interface and ntopng_packages_installed|changed
+
+- name: Configure nprobe (1/2)
+  template: >
+    src=nprobe-none.start.j2
+    dest=/etc/nprobe/nprobe-none.start
+    owner=root
+    group=root
+    mode=0644
+
+- name: Configure nprobe (2/2)
+  template: >
+    src=nprobe-none.conf.j2
+    dest=/etc/nprobe/nprobe-none.conf
+    owner=root
+    group=root
+    mode=0644
+  notify:
+  - restart and enable nprobe service
+
+- name: Configure ntopng (1/2)
+  template: >
+    src=ntopng.start.j2
+    dest=/etc/ntopng/ntopng.start
+    owner=root
+    group=root
+    mode=0644
+
+- name: Configure ntopng (2/2)
+  template: >
+    src=ntopng.conf.j2
+    dest=/etc/ntopng/ntopng.conf
+    owner=root
+    group=root
+    mode=0644
+  notify:
+  - restart and enable ntopng service

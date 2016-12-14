@@ -1,0 +1,17 @@
+--pid-path={{ ntopng_pid_path }}
+--data-dir={{ ntopng_data_dir }}
+--http-port={{ ntopng_http_port }}
+--dns-mode={{ ntopng_dns_mode }}
+--interface="tcp://127.0.0.1:{{ ntopng_nprobe_tcp_port }}"
+{% if ntopng_use_default_nic_as_monitor_interface  == True %}
+--interface="{{ ansible_default_ipv4.interface }}"
+{% endif %}
+{% if ntopng_runas_daemon  == True %}
+--daemon
+{% endif %}
+{% if ntopng_community_edition  == True %}
+--community
+{% endif %}
+{% if ntopng_disable_autologout  == True %}
+--disable-autologout
+{% endif %}
