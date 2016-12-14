@@ -2,7 +2,7 @@
 
 
 ntopng-ansible-role
-===================
+==================
 
 Ansible role to install and configure ntopng.
 
