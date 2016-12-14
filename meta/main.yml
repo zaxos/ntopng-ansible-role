@@ -11,6 +11,6 @@ galaxy_info:
     versions:
     - 7
 
-  galaxy_tags: [ntopng,netflow,sflow,ipfix]
+  galaxy_tags: [ntopng,netflow,sflow,ipfix,monitoring]
 
 dependencies: []
