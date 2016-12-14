@@ -1,5 +1,5 @@
+[![Build Status](https://travis-ci.org/zaxos/ntopng-ansible-role.svg?branch=master)](https://travis-ci.org/zaxos/ntopng-ansible-role)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-%20zaxos.ntopng--ansible--role-blue.svg)](https://galaxy.ansible.com/zaxos/ntopng-ansible-role/)
-
 
 ntopng-ansible-role
 ==================
