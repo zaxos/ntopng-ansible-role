@@ -34,7 +34,7 @@ The main variable:
 - `ntopng_nprobe_flow_collector_port`: The udp port of nProbe to collect flows.
 
 Some defaults (probably not requiring tampering):
-- `ntopng_use_default_nic_as_monitor_interface`: False  
+- `ntopng_use_default_nic_as_monitor_interface`: True   
 Set this variable to "True" if you want to use the default network card as ntopng monitor interface.
 - `ntopng_http_port`: 3000  
 Sets the HTTP port of the embedded web server. If set to 0, the http server will be disabled.
