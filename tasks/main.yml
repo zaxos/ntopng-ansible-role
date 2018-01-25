@@ -54,15 +54,13 @@
   command: ethtool -K {{ ansible_default_ipv4.interface }} gro off gso off tso off
   when: ntopng_use_default_nic_as_monitor_interface and ntopng_packages_installed|changed
 
-- name: Configure nprobe (1/2)
-  template: >
-    src=nprobe-none.start.j2
-    dest=/etc/nprobe/nprobe-none.start
-    owner=root
-    group=root
-    mode=0644
+- name: Disable default nprobe service
+  systemd: >
+    name=nprobe
+    state=stopped
+    enabled=no
 
-- name: Configure nprobe (2/2)
+- name: Configure nprobe
   template: >
     src=nprobe-none.conf.j2
     dest=/etc/nprobe/nprobe-none.conf
