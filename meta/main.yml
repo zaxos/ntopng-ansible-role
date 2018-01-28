@@ -13,4 +13,5 @@ galaxy_info:
 
   galaxy_tags: [ntopng,netflow,sflow,ipfix,monitoring]
 
-dependencies: []
+dependencies:
+  - { role: geerlingguy.repo-epel }
