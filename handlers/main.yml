@@ -7,7 +7,7 @@
            enabled=yes
 
 - name: restart and enable nprobe service
-  service: name=nprobe
+  systemd: name=nprobe@none
            state=restarted
            enabled=yes
 
