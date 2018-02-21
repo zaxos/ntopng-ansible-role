@@ -6,6 +6,7 @@
 {% if ntopng_use_default_nic_as_monitor_interface  == True %}
 --interface="{{ ansible_default_ipv4.interface }}"
 {% endif %}
+--dump-flows="mysql;localhost;ntopng;flows;ntopng;ntopng"
 {% if ntopng_runas_daemon  == True %}
 --daemon
 {% endif %}

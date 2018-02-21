@@ -14,4 +14,12 @@ galaxy_info:
   galaxy_tags: [ntopng,netflow,sflow,ipfix,monitoring]
 
 dependencies:
-  - { role: geerlingguy.repo-epel }
+  - role: geerlingguy.repo-epel
+  - role: geerlingguy.mysql
+    become: yes
+    mysql_databases:
+      - name: ntopng
+    mysql_users:
+      - name: ntopng
+        password: ntopng
+        priv: "ntopng.*:ALL"
