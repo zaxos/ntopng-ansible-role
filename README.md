@@ -44,7 +44,7 @@ Sets the HTTP port of the embedded web server. If set to 0, the http server will
     - 1 = Decode DNS responses and resolve all numeric IPs.
     - 2 = Decode DNS responses and don't resolve numeric IPs.
     - 3 = Don't decode DNS responses and don't resolve numeric IPs.
-- `ntopng_data_dir`: /var/tmp/ntopng
+- `ntopng_data_dir`: /var/lib/ntopng
 - `ntopng_pid_path`: /var/run/ntopng.pid
 - `ntopng_disable_autologout`: False  
 Set this variable to "True" in order to disable web interface logout for inactivity.
